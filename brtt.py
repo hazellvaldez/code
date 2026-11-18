@@ -1,0 +1,529 @@
+import random
+
+student_accounts = {}
+
+print("========================================")
+print("        Welcome, Students! 😊")
+print("========================================")
+
+while True:
+    print("\n[1] Create a Free Account (Register)")
+    print("[2] Log In")
+    print("[3] Exit")
+
+    choice = input("Choose your option (1, 2, or 3): ").strip()
+
+    if choice == '1':
+        print("\n--- REGISTRATION ---")
+        new_user = input("Enter Username: ").strip()
+
+        if new_user == "":
+            print("[!] Username cannot be blank.")
+
+        elif new_user in student_accounts:
+            print("[!] Username already exists. Please choose another one.")
+
+        else:
+            new_pass = input("Enter password: ").strip()
+
+            if new_pass == "":
+                print("[!] Password cannot be blank.")
+
+            else:
+                student_accounts[new_user] = new_pass
+                print(f"[Success] Account successfully created for '{new_user}'!")
+
+    elif choice == '2':
+        print("\n--- LOGIN ---")
+
+        if len(student_accounts) == 0:
+            print("[!] No registered accounts yet. Please register first using Option 1.")
+            continue
+
+        user = input("Username: ").strip()
+        password = input("Password: ").strip()
+
+        if user in student_accounts and student_accounts[user] == password:
+            print(f"\nHi. Welcome, {user}!")
+            print("You have successfully logged into our system. 😊")
+            break
+
+        else:
+            print("\n[!] Incorrect username or password. Please try again.")
+
+    elif choice == '3':
+        print("\nGoodbye! 👋")
+        exit()
+
+    else:
+        print("[!] Invalid choice. Please select 1, 2, or 3.")
+
+
+def show_menu():
+    print("\n========================================")
+    print("===         WELCOME TO OUR PYTHON TUTORIAL :>          ===")
+    print("========================================")
+    print("1. Introduction to Programming & Syntax")
+    print("2. Variables, Naming Rules & Data Types")
+    print("3. Accepting User Input & Type Conversion")
+    print("4. Arithmetic Operators & PEMDAS Expressions")
+    print("5. Relational (Comparison) Operators")
+    print("6. Conditional Statements: if and if-else")
+    print("7. Conditional Statements: if-elif-else")
+    print("8. Nested Conditional Statements")
+    print("9. Logical Operators (and, or, not)")
+    print("10. Introduction to Iteration (Loops)")
+    print("11. Python Knowledge Quiz (15 Basic Questions)")
+    print("12. Bonus Rock-Paper-Scissors Mini-Game")
+    print("----------------------------------------")
+
+
+def lesson_one():
+    print("\n--- LESSON 1: INTRODUCTION TO PROGRAMMING & SYNTAX ---")
+    print("• Python was created by Guido van Rossum in 1991.")
+    print("• Designed for simplicity, readability, and professional power.")
+    print("• Case Sensitivity: Python treats uppercase and lowercase letters differently.")
+
+    name = "John"
+    print(f"  Example variable: name = '{name}'")
+    print("  (Note: Trying to print 'Name' with a capital N will result in a NameError).")
+
+    print("• Printing Text & Numbers:")
+    print("  - Text strings must be enclosed in quotes. print(\"Hello, World!\")")
+    print("  - Numbers can be printed directly without quotes. print(100), print(25.5)")
+    print("• Comments: Ignored by Python, used to explain code.")
+    print("  - Single-line comments start with '#'.")
+    print("  - Multi-line comments use triple quotes (\"\"\").")
+
+
+def lesson_two():
+    print("\n--- LESSON 2: VARIABLES, NAMING RULES & DATA TYPES ---")
+    print("• A variable is a named storage location to keep data.")
+    print("• Naming Rules: Must start with a letter or underscore; cannot start with a number.")
+    print("• Cannot contain spaces or special symbols (@, #, ., etc.).")
+
+    print("\n• Core Data Types (Declaration Example):")
+    print("  - name = \"Hairon\"  --> str (Stores text inside quotes)")
+    print("  - age = 18        --> int (Stores whole numbers)")
+    print("  - grade = 90.5    --> float (Stores numbers with decimal points)")
+    print("  - is_enrolled = True --> bool (Stores True or False values)")
+
+    name = "Hairon"
+    age = 18
+    grade = 90.5
+    is_enrolled = True
+
+    print(f"\n[Live Test] Variables active: {name}, {age}, {grade}, {is_enrolled}")
+
+
+def lesson_three():
+    print("\n--- LESSON 3: ACCEPTING USER INPUT & TYPE CONVERSION ---")
+    print("• By default, the input() function returns data as a string (str).")
+    print("• Syntax: variable = input(\"Prompt message: \")")
+
+    print("\nLet's test user input interactively:")
+
+    user_name = input("Enter your name: ")
+    user_age_str = input("Enter your age: ")
+    user_age = int(user_age_str)
+    user_grade = float(input("Enter your final grade (decimal): "))
+
+    print("\n--- Output Results ---")
+    print(f"Student: {user_name} (Type: {type(user_name)})")
+    print(f"Age: {user_age} (Type: {type(user_age)})")
+    print(f"Final Grade: {user_grade} (Type: {type(user_grade)})")
+
+
+def lesson_four():
+    print("\n--- LESSON 4: ARITHMETIC OPERATORS & PEMDAS ---")
+    print("• Operators: + (Add), - (Subtract), * (Multiply), / (Float Division),")
+    print("  // (Floor Division), % (Modulus/Remainder), ** (Exponentiation).")
+
+    a, b = 15, 4
+
+    print(f"\nGiven numbers: a = {a}, b = {b}")
+    print(f"• Addition (a + b)        : {a + b}")
+    print(f"• Subtraction (a - b)     : {a - b}")
+    print(f"• Multiplication (a * b)  : {a * b}")
+    print(f"• Division (a / b)        : {a / b}")
+    print(f"• Floor Division (a // b) : {a // b}")
+    print(f"• Modulus (a % b)         : {a % b}")
+    print(f"• Exponentiation (a ** 2) : {a ** 2}")
+
+    print("\n• Order of Operations - PEMDAS:")
+    print("  1. Parentheses (P)")
+    print("  2. Exponents (E)")
+    print("  3. Multiplication & Division (M, D)")
+    print("  4. Addition & Subtraction (A, S)")
+
+
+def lesson_five():
+    print("\n--- LESSON 5: RELATIONAL (COMPARISON) OPERATORS ---")
+    print("• Used to compare two values; always returns True or False.")
+    print("  - == (Equal to)       | Example: 10 == 10 -> True")
+    print("  - != (Not equal to)  | Example: 10 != 5  -> True")
+    print("  - >  (Greater than)  | Example: 10 > 5   -> True")
+    print("  - <  (Less than)     | Example: 5 < 10   -> True")
+    print("  - >= (Greater/Equal) | Example: 10 >= 10 -> True")
+    print("  - <= (Less/Equal)    | Example: 5 <= 10  -> True")
+
+    score = 85
+
+    print(f"\n[Live Example] score = {score}")
+    print(f"Evaluation of print(score >= 75): {score >= 75}")
+
+
+def lesson_six():
+    print("\n--- LESSON 6: CONDITIONAL STATEMENTS (if & if-else) ---")
+    print("• The 'if' statement executes a block of code only when a condition is True.")
+    print("• The 'else' statement provides an alternative action when the 'if' condition is False.")
+
+    print("\n[Example Code]")
+    print("  score = 65")
+    print("  if score >= 75:")
+    print("      print(\"Passed\")")
+    print("  else:")
+    print("      print(\"Failed\")")
+    print("-> Output: Failed (since 65 is less than 75, the else block runs).")
+
+
+def lesson_seven():
+    print("\n--- LESSON 7: THE if-elif-else STATEMENT ---")
+    print("• Used when there are multiple conditions to evaluate.")
+    print("• Python checks conditions from top to bottom and executes the first condition that is True.")
+
+    print("\n[Example Code]")
+    print("  score = 85")
+    print("  if score >= 90:")
+    print("      print(\"Excellent\")")
+    print("  elif score >= 80:")
+    print("      print(\"Very Good\")  <-- This block executes!")
+    print("  elif score >= 75:")
+    print("      print(\"Passed\")")
+    print("  else:")
+    print("      print(\"Failed\")")
+    print("-> Output: Very Good")
+
+
+def lesson_eight():
+    print("\n--- LESSON 8: NESTED CONDITIONS IN PYTHON ---")
+    print("• A nested condition is a condition inside another condition.")
+    print("• The inner condition is checked only if the outer condition evaluates to True.")
+
+    print("\n[Example Structure]")
+    print("  if condition1:")
+    print("      if condition2:")
+    print("          # executed if both are True")
+    print("      else:")
+    print("          # executed if condition1 is True but condition2 is False")
+    print("  else:")
+    print("      # executed if condition1 is False")
+
+
+def lesson_nine():
+    print("\n--- LESSON 9: LOGICAL OPERATORS (and, or, not) ---")
+    print("• Logical operators combine or reverse conditions.")
+    print("  1. 'and': Returns True ONLY when ALL conditions are True.")
+    print("  2. 'or' : Returns True when AT LEAST ONE condition is True.")
+    print("  3. 'not': Reverses the result of a condition (True becomes False, False becomes True).")
+
+
+def lesson_ten():
+    print("\n--- LESSON 10: INTRODUCTION TO ITERATION (LOOPS) ---")
+    print("• Iteration means repeating a process or executing a set of instructions repeatedly.")
+    print("• Python has two main types of loops: 'for' loops and 'while' loops.")
+
+    print("\n--- 1. The for Loop ---")
+    print("• Repeats instructions for each item in a sequence; useful when the number of repetitions is known.")
+    print("• Example code:")
+    print("    for number in range(3):")
+    print("        print(\"Welcome to Python!\")")
+    print("• Output:")
+
+    for num in range(3):
+        print(f"  {num + 1} Welcome to Python!")
+
+    print("\n--- 2. The while Loop ---")
+    print("• Repeats instructions while a condition is True; useful when repetition depends on a condition.")
+    print("• Example code:")
+    print("    count = 1")
+    print("    while count <= 3:")
+    print("        print(\"Hello!\")")
+    print("        count += 1")
+    print("• Output:")
+
+    count = 1
+
+    while count <= 3:
+        print(f"  {count} Hello!")
+        count += 1
+
+
+def interactive_quiz():
+    print("\n========================================")
+    print("===   BASIC 15-QUESTIONS PYTHON QUIZ  ===")
+    print("========================================")
+    print("Hi Students!, Please answer the following 15 easy questions!😊\n")
+
+    score = 0
+    total_questions = 15
+
+    # Q1 (Lesson 1)
+    print("Q1: Which function is used to display text on the screen?")
+    print("  A) show()\n  B) display()\n  C) print()\n  D) write()")
+
+    if input("Your answer (A/B/C/D): ").strip().upper() == 'C':
+        print("Correct!\n")
+        score += 1
+    else:
+        print("Incorrect. Correct is C (print()).\n")
+
+    # Q2 (Lesson 1)
+    print("Q2: What symbol is used to start a single-line comment in Python?")
+    print("  A) #\n  B) //\n  C) /*\n  D) --")
+
+    if input("Your answer (A/B/C/D): ").strip().upper() == 'A':
+        print("Correct!\n")
+        score += 1
+    else:
+        print("Incorrect. Correct is A (#).\n")
+
+    # Q3 (Lesson 2)
+    print("Q3: Which of these is a correct way to create a variable?")
+    print("  A) 1st_name = \"John\"\n  B) my-name = \"John\"\n  C) student_name = \"John\"\n  D) class = \"John\"")
+
+    if input("Your answer (A/B/C/D): ").strip().upper() == 'C':
+        print("Correct!\n")
+        score += 1
+    else:
+        print("Incorrect. Correct is C (student_name).\n")
+
+    # Q4 (Lesson 2)
+    print("Q4: Which data type is used to store text inside quotes?")
+    print("  A) int\n  B) float\n  C) str\n  D) bool")
+
+    if input("Your answer (A/B/C/D): ").strip().upper() == 'C':
+        print("Correct!\n")
+        score += 1
+    else:
+        print("Incorrect. Correct is C (str).\n")
+
+    # Q5 (Lesson 2)
+    print("Q5: Which data type is used to store numbers with decimals (like 89.5)?")
+    print("  A) int\n  B) float\n  C) str\n  D) bool")
+
+    if input("Your answer (A/B/C/D): ").strip().upper() == 'B':
+        print("Correct!\n")
+        score += 1
+    else:
+        print("Incorrect. Correct is B (float).\n")
+
+    # Q6 (Lesson 3)
+    print("Q6: Which function is used to accept keyboard input from a user?")
+    print("  A) get()\n  B) read()\n  C) input()\n  D) scan()")
+
+    if input("Your answer (A/B/C/D): ").strip().upper() == 'C':
+        print("Correct!\n")
+        score += 1
+    else:
+        print("Incorrect. Correct is C (input()).\n")
+
+    # Q7 (Lesson 3)
+    print("Q7: What function is used to convert string input into a whole number?")
+    print("  A) float()\n  B) int()\n  C) str()\n  D) num()")
+
+    if input("Your answer (A/B/C/D): ").strip().upper() == 'B':
+        print("Correct!\n")
+        score += 1
+    else:
+        print("Incorrect. Correct is B (int()).\n")
+
+    # Q8 (Lesson 4)
+    print("Q8: Which arithmetic operator is used for addition?")
+    print("  A) +\n  B) -\n  C) *\n  D) /")
+
+    if input("Your answer (A/B/C/D): ").strip().upper() == 'A':
+        print("Correct!\n")
+        score += 1
+    else:
+        print("Incorrect. Correct is A (+).\n")
+
+    # Q9 (Lesson 4)
+    print("Q9: Which arithmetic operator is used for multiplication?")
+    print("  A) x\n  B) *\n  C) #\n  D) ^")
+
+    if input("Your answer (A/B/C/D): ").strip().upper() == 'B':
+        print("Correct!\n")
+        score += 1
+    else:
+        print("Incorrect. Correct is B (*).\n")
+
+    # Q10 (Lesson 5)
+    print("Q10: What relational operator checks if two values are equal?")
+    print("  A) =\n  B) ==\n  C) !=\n  D) <>")
+
+    if input("Your answer (A/B/C/D): ").strip().upper() == 'B':
+        print("Correct!\n")
+        score += 1
+    else:
+        print("Incorrect. Correct is B (==).\n")
+
+    # Q11 (Lesson 5)
+    print("Q11: What does the relational operator '>' check?")
+    print("  A) Less than\n  B) Greater than\n  C) Equal to\n  D) Not equal")
+
+    if input("Your answer (A/B/C/D): ").strip().upper() == 'B':
+        print("Correct!\n")
+        score += 1
+    else:
+        print("Incorrect. Correct is B (Greater than).\n")
+
+    # Q12 (Lesson 6)
+    print("Q12: Which keyword starts a conditional statement in Python?")
+    print("  A) when\n  B) check\n  C) if\n  D) case")
+
+    if input("Your answer (A/B/C/D): ").strip().upper() == 'C':
+        print("Correct!\n")
+        score += 1
+    else:
+        print("Incorrect. Correct is C (if).\n")
+
+    # Q13 (Lesson 6)
+    print("Q13: What keyword handles the alternative action when an 'if' condition is False?")
+    print("  A) else\n  B) other\n  C) then\n  D) default")
+
+    if input("Your answer (A/B/C/D): ").strip().upper() == 'A':
+        print("Correct!\n")
+        score += 1
+    else:
+        print("Incorrect. Correct is A (else).\n")
+
+    # Q14 (Lesson 7)
+    print("Q14: What keyword is Python's short form for else-if statements?")
+    print("  A) elseif\n  B) else if\n  C) elif\n  D) alt")
+
+    if input("Your answer (A/B/C/D): ").strip().upper() == 'C':
+        print("Correct!\n")
+        score += 1
+    else:
+        print("Incorrect. Correct is C (elif).\n")
+
+    # Q15 (Lesson 10)
+    print("Q15: Which loop is commonly used to repeat code in Python?")
+    print("  A) for loop\n  B) repeat loop\n  C) loop-to\n  D) cycle-loop")
+
+    if input("Your answer (A/B/C/D): ").strip().upper() == 'A':
+        print("Correct!\n")
+        score += 1
+    else:
+        print("Incorrect. Correct is A (for loop).\n")
+
+    # Final Score Summary
+    print("========================================")
+    print(f"=== QUIZ COMPLETED! Your Score: {score}/{total_questions} ===")
+
+    if score == total_questions:
+        print("Amazing! Perfect score of 15/15!")
+
+    elif score >= 10:
+        print("Great job! You did very well on the quiz.")
+
+    else:
+        print("Keep reviewing the lessons and try again!")
+
+    print("========================================")
+
+
+def rock_paper_scissors():
+    """Bonus Rock-Paper-Scissors Mini-Game"""
+
+    print("\n========================================")
+    print("===    ROCK-PAPER-SCISSORS GAME      ===")
+    print("========================================")
+    print("Let's play Rock, Paper, Scissors!")
+
+    choices = ["rock", "paper", "scissors"]
+
+    while True:
+        player_choice = input(
+            "\nChoose: rock, paper, or scissors (or type 'quit' to go back): "
+        ).strip().lower()
+
+        if player_choice == 'quit':
+            print("Exiting Rock-Paper-Scissors game. See you!")
+            break
+
+        if player_choice not in choices:
+            print("[!] Invalid choice. Please choose: rock, paper, or scissors.")
+            continue
+
+        computer_choice = random.choice(choices)
+
+        print(f"Computer chose: {computer_choice}")
+
+        if player_choice == computer_choice:
+            print("It's a tie!")
+
+        elif (player_choice == 'rock' and computer_choice == 'scissors') or \
+                (player_choice == 'paper' and computer_choice == 'rock') or \
+                (player_choice == 'scissors' and computer_choice == 'paper'):
+
+            print("You win this round! Excellent!")
+
+        else:
+            print("Computer wins this round! Try again!")
+
+
+if __name__ == "__main__":
+
+    while True:
+        show_menu()
+
+        choice = input(
+            "\nChoose lesson, quiz, or game (1-12, or type 'exit' to quit): "
+        ).strip()
+
+        if choice == '1':
+            lesson_one()
+
+        elif choice == '2':
+            lesson_two()
+
+        elif choice == '3':
+            lesson_three()
+
+        elif choice == '4':
+            lesson_four()
+
+        elif choice == '5':
+            lesson_five()
+
+        elif choice == '6':
+            lesson_six()
+
+        elif choice == '7':
+            lesson_seven()
+
+        elif choice == '8':
+            lesson_eight()
+
+        elif choice == '9':
+            lesson_nine()
+
+        elif choice == '10':
+            lesson_ten()
+
+        elif choice == '11':
+            interactive_quiz()
+
+        elif choice == '12':
+            rock_paper_scissors()
+
+        elif choice.lower() == 'exit':
+            print("\nExiting Python Tutorial. Good luck with your studies students! 😊")
+            break
+
+        else:
+            print("\n[!] Invalid choice. Please enter a number between 1 and 12.")
+
+        input("\nPress Enter to return to the main menu...")
